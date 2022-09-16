@@ -23,7 +23,7 @@ public class Course {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "price")
+    @Column(name = "isActive")
     boolean isActive;
 
     @OneToOne
