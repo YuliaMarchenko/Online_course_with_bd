@@ -20,7 +20,12 @@ public class CourseController {
     }
 
     @GetMapping("/courses")
-    public List<GetCoursesDTO> getCourses(@RequestParam(name = "showAll", required = false, defaultValue = "false") boolean showAll){
+    public List<GetCoursesDTO> getCourses(@RequestParam(name = "showAll", required = false, defaultValue = "false") boolean showAll) {
         return courseService.getCourses(showAll);
+    }
+
+    @GetMapping("/courses/{id}")
+    public CourseDTO getCourseInfo(@PathVariable("id") Long id) {
+        return courseService.getCourse(id);
     }
 }

@@ -16,4 +16,5 @@ public class CourseDTO {
     private String lecturer;
     private LocalDate startsOn;
     private LocalDate endsOn;
+    private boolean isActive;
 }

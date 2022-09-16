@@ -58,4 +58,16 @@ public class CourseServiceImpl implements CourseService {
                 .map(course -> GetCoursesDTO.builder().id(course.getId()).name(course.getName()).build())
                 .toList();
     }
+
+    @Override
+    public CourseDTO getCourse(Long id) {
+        Course course = courseRepository.findById(id).get();
+        return CourseDTO.builder().id(course.getId())
+                .name(course.getName())
+                .description(course.getCourseInfo().getDescription())
+                .startsOn(course.getCourseInfo().getStartsOn())
+                .endsOn(course.getCourseInfo().getEndsOn())
+                .lecturer(course.getCourseInfo().getLecturer())
+                .isActive(course.isActive()).build();
+    }
 }
