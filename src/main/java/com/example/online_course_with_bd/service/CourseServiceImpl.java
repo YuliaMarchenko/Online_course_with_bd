@@ -1,12 +1,15 @@
 package com.example.online_course_with_bd.service;
 
 import com.example.online_course_with_bd.dto.CourseDTO;
+import com.example.online_course_with_bd.dto.GetCoursesDTO;
 import com.example.online_course_with_bd.entity.Course;
 import com.example.online_course_with_bd.entity.CourseInfo;
 import com.example.online_course_with_bd.repository.CourseInfoRepository;
 import com.example.online_course_with_bd.repository.CourseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("CourseService")
 @AllArgsConstructor
@@ -38,5 +41,12 @@ public class CourseServiceImpl implements CourseService {
         courseDTO.setId(course.getId());
 
         return courseDTO;
+    }
+
+    @Override
+    public List<GetCoursesDTO> getCourses() {
+        return courseRepository.findAllActiveCourses().stream()
+                .map(course -> GetCoursesDTO.builder().id(course.getId()).name(course.getName()).build())
+                .toList();
     }
 }
