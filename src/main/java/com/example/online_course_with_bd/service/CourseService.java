@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CourseService {
     CourseDTO createCourse (CourseDTO courseDTO);
-    List<GetCoursesDTO> getCourses();
+    List<GetCoursesDTO> getCourses(boolean showAll);
 }

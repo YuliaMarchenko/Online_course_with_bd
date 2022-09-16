@@ -44,8 +44,17 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<GetCoursesDTO> getCourses() {
-        return courseRepository.findAllActiveCourses().stream()
+    public List<GetCoursesDTO> getCourses(boolean showAll) {
+
+        List<Course> result;
+
+        if (showAll) {
+            result = courseRepository.findAll();
+        } else {
+            result = courseRepository.findAllActiveCourses();
+        }
+
+        return result.stream()
                 .map(course -> GetCoursesDTO.builder().id(course.getId()).name(course.getName()).build())
                 .toList();
     }

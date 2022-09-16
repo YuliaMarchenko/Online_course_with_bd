@@ -20,7 +20,7 @@ public class CourseController {
     }
 
     @GetMapping("/courses")
-    public List<GetCoursesDTO> getCourses(){
-        return courseService.getCourses();
+    public List<GetCoursesDTO> getCourses(@RequestParam(name = "showAll", required = false, defaultValue = "false") boolean showAll){
+        return courseService.getCourses(showAll);
     }
 }
